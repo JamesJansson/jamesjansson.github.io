@@ -490,12 +490,14 @@
 
 			&:hover {
 				&:after {
-					opacity: 1.0;
+          opacity: 0.0;
+					/*opacity: 1.0;*//*display "view" above*/
 				}
 
 				&:before {
 					/*background: url('images/overlay.png'), url('images/overlay.png');*/
-					opacity: 1.0;
+					opacity: 0.0;
+					/*opacity: 1.0;*//*display "view" above*/
 				}
 			}
 		}
