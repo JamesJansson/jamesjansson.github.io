@@ -27,6 +27,29 @@
   <script src="js/third-party/threejs/OrbitControls.js"></script>
 
   <script>
+    function Building(x, y){
+      this.x = x;
+      this.y = y;
+      this.width = 20;
+      this.height = 30 + 10 * Math.random();
+    }
+
+    Building.prototype.addToScene = function (scene){
+      var material = new THREE.MeshPhongMaterial({
+        color: 0x00ff00,
+        specular: 0xffffff,
+        shininess: 20,
+        shading: THREE.FlatShading
+        //map: texture
+      });
+      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      var cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+    };
+  </script>
+
+
+  <script>
     var camera, scene, renderer;
     var effect, controls;
     var element, container;
@@ -181,25 +204,7 @@
       }
     }
 
-    function Building(x, y){
-      this.x = x;
-      this.y = y;
-      this.width = 20;
-      this.height = 30 + 10 * Math.random();
-    }
-
-    Building.prototype.addToScene = function (scene){
-      var material = new THREE.MeshPhongMaterial({
-        color: 0x00ff00,
-        specular: 0xffffff,
-        shininess: 20,
-        shading: THREE.FlatShading
-        //map: texture
-      });
-      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
-    };
+    
   </script>
   </body>
 </html>
