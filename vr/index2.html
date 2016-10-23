@@ -144,6 +144,10 @@
       //camera.position.z+=-10*dt;
       
       camera.translateZ(-10*dt);
+      if (camera.position.z < 0){
+        camera.position.z = 0;
+      }
+
       
       camera.updateProjectionMatrix();
 
