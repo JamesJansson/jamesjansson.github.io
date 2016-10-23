@@ -122,6 +122,9 @@
       // add the sphere to the scene
       scene.add(sphere);
 
+      // set up buildings
+      var firstBuilding = new Building(100, 100);
+      firstBuilding.addToScene(scene);
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
@@ -144,8 +147,8 @@
       //camera.position.z+=-10*dt;
       
       camera.translateZ(-10*dt);
-      if (camera.position.y < 0){
-        camera.position.y = 0;
+      if (camera.position.y < 1.7){
+        camera.position.y = 1.7;
       }
 
       
@@ -177,6 +180,26 @@
         container.webkitRequestFullscreen();
       }
     }
+
+    function Building(x, y){
+      this.x = x;
+      this.y = y;
+      this.width = 20;
+      this.height = 30 + 10 * Math.rand();
+    }
+
+    Building.prototype.addToScene = function (scene){
+      var material = new THREE.MeshPhongMaterial({
+        color: 0x00ff00,
+        specular: 0xffffff,
+        shininess: 20,
+        shading: THREE.FlatShading
+        //map: texture
+      });
+      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      var cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+    };
   </script>
   </body>
 </html>
