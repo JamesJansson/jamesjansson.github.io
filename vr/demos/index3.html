@@ -44,8 +44,9 @@
       });
       var geometry = new THREE.BoxGeometry( this.width, this.height, this.width );
       var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
       cube.position = new THREE.Vector3(this.x, this.width/2, this.y);
+      scene.add( cube );
+      
     };
   </script>
 
@@ -152,6 +153,9 @@
       // set up buildings
       var firstBuilding = new Building(100, 100);
       firstBuilding.addToScene(scene);
+
+      var secondBuilding = new Building(0, 0);
+      secondBuilding.addToScene(scene);
 
       window.addEventListener('resize', resize, false);
       setTimeout(resize, 1);
