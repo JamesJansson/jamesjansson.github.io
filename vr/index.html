@@ -19,37 +19,38 @@
       <h2> Basic Cardboard tutorial: create a scene, move around in it, add elements </h2>
         <p>Download the source here. It starts with the standard Google cardboard view turorial which is from <a href="https://vr.chromeexperiments.com/">here</a>. 
         <p> 
-          <a href="demos/index.html">Demo 1: </a> Making a scene with a red ball in it. 
-          <a href=> Demo 2: </a> re
+          <a href="demos/index.html">Demo 1: </a> Making a scene with a red ball in it. <br>
+
+          <a href="demos/index2.html"> Demo 2: </a> Restrict the position of the camera to be above ground (about hhuman height)<br>
           We add the following code:<br>
           if (camera.position.y < 0){<br>
             camera.position.y = 0;<br>
           }<br>
 
+          <a href="demos/index3.html"> Demo 3: </a> Add a building instead of ball.<br>
 
-    function Building(x, y){
-      this.x = x;
-      this.y = y;
-      this.width = 20;
-      this.height = 30 + 10 * Math.random();
-    }
 
-    Building.prototype.addToScene = function (scene){
-      var material = new THREE.MeshPhongMaterial({
-        color: 0x00ff00,
-        specular: 0xffffff,
-        shininess: 20,
-        shading: THREE.FlatShading
-        //map: texture
-      });
-      var geometry = new THREE.BoxGeometry( this.width, this.height, this.width );
-      var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
-      cube.position = new THREE.Vector3(this.x, this.width/2, this.y);
-    };
+              function Building(x, y){<br>
+                this.x = x;<br>
+                this.y = y;<br>
+                this.width = 20;<br>
+                this.height = 30 + 10 * Math.random();<br>
+              }<br>
+<br>
+              Building.prototype.addToScene = function (scene){<br>
+                var material = new THREE.MeshPhongMaterial({<br>
+                  color: 0x00ff00,<br>
+                  specular: 0xffffff,<br>
+                  shininess: 20,<br>
+                  shading: THREE.FlatShading<br>
+                });
+                var geometry = new THREE.BoxGeometry( this.width, this.height, this.width );<br>
+                var cube = new THREE.Mesh( geometry, material );<br>
+                scene.add( cube );<br>
+              };
 
-        No app to install. 
-        Want to demo something easily and quickly. 
+        No app to install. <br>
+        Want to demo something easily and quickly. <br>
         Don't want to demo </p>
     </body> 
 </html>
