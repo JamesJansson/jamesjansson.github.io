@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+.axis--x path {
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+</style>
+
+<script src='https://d3js.org/d3.v4.min.js'></script>
+
+</head>
+
+<body>
+<svg id='chart1' width='1000' height='600'></svg>
+</body>
+
+<script>
+var chart1 = d3.select('svg');
+var margin = {top: 30, right: 30, bottom: 40, left: 40};
+var width = +chart1.attr('width') - margin.left - margin.right;
+var height = +chart1.attr('height') - margin.top - margin.bottom;
+
+var g = chart1.append('g').attr('transform', 
+    'translate(' + margin.left + ',' + margin.top + ')');
+
+var x = d3.scaleTime().rangeRound([0, width]);
+
+var y = d3.scaleLinear().rangeRound([height, 0]);
+
+var line1 = d3.line().
+    x(function(d) { return x(d.time); }).
+    y(function(d) { return y(d.value); });
+
+// use the following to download the data:
+// var string = d3.csvFormat(data, ['year', 'make', 'model', 'length']);
+
+
+var parseDate = d3.timeParse('%Y-%m-%d');
+
+
+
+var xParser = parseDate;
+var dataString = 'time,value,description\n' +
+    '2016-06-01,10,Test1\n' +
+    '2016-06-02,20,Test2\n' +
+    '2016-06-06,30,Test3\n';
+var xAxisLabel = 'Date';
+var yAxisLabel = 'Views';
+
+d3.csvParse(dataString, function(d) {
+    console.log(d);
+    d.time = xParser(d.time);
+    d.value = +d.value;// the plus is used to coerce the string into a number
+    return d;
+  }, function(error, data) {
+      console.log('Hello');
+    if (error) {
+      throw error;
+    }
+    x.domain(d3.extent(data, function(d) { return d.date; }));
+    y.domain([0, d3.extent(data, function(d) { return d.close; })]);
+
+    g.append('g').
+          attr('class', 'axis axis--x').
+          attr('transform', 'translate(0,' + height + ')').
+          call(d3.axisBottom(x)).
+        append('text').
+          text(xAxisLabel);
+
+    g.append('g').
+        attr('class', 'axis yaxis').
+        call(d3.axisLeft(y)).
+      append('text').
+        attr('transform', 'rotate(-90)').
+        text(yAxisLabel);
+
+  g.append('path').
+      datum(data).
+      attr('class', 'line').
+      attr('d', line);
+    
+});
+
+
+</script>
+
+</html>
