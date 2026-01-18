@@ -1,0 +1,176 @@
+<html>
+  <!-- Copyright CrabMe Pty Ltd -->
+  <head>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .container {
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 100vw;
+        height: 100vh;
+      }
+      .word-container {
+        /* background-color: #ffb5b5; */
+        padding: 10px;
+        font-size: clamp(12px, 25vh, 1000px);
+        width: 50vw;
+        max-width: 50vw;
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .word2 {
+        font-size: clamp(12px, 25vh, 1000px);
+      }
+      .word3 {
+        font-size: clamp(12px, 25vh, 1000px);
+      }
+      .word4 {
+        font-size: clamp(12px, 25vh, 1000px);
+      }
+      .word5 {
+        font-size: clamp(12px, 20vh, 1000px);
+      }
+      .word6 {
+        font-size: clamp(12px, 18vh, 1000px);
+      }
+      .word7 {
+        font-size: clamp(12px, 16vh, 1000px);
+      }
+      .word8 {
+        font-size: clamp(12px, 15vh, 1000px);
+      }
+      .word9 {
+        font-size: clamp(12px, 14vh, 1000px);
+      }
+      .word10 {
+        font-size: clamp(12px, 13vh, 1000px);
+      }
+      .word11 {
+        font-size: clamp(12px, 12vh, 1000px);
+      }
+      .emoji {
+        background-color: #ffffff;
+        padding: 10px;
+        font-size: clamp(12px, 50vh, 1000px);
+        width: 50vw;
+        max-width: 50vw;
+        overflow: hidden;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+    </style>
+    <script>
+      const pages = [
+        ["DOG", "🐕"],
+        ["CAT", "🐈"],
+        ["COW", "🐄"],
+        ["ANT", "🐜"],
+        ["BEE", "🐝"],
+        ["FLY", "🪰"],
+        ["PIG", "🐖"],
+        ["FOX", "🦊"],
+        ["BAT", "🦇"],
+        ["SUN", "☀️"],
+        ["MOON", "🌛"],
+        ["STAR", "⭐"],
+        ["TREE", "🌳"],
+        ["BEAR", "🐻"],
+        ["BIRD", "🐦"],
+        ["DUCK", "🦆"],
+        ["SWAN", "🦢"],
+        ["NEST", "🪺"],
+        ["FROG", "🐸"],
+        ["FISH", "🐟"],
+        ["CRAB", "🦀"],
+        ["SHARK", "🦈"],
+        ["KOALA", "🐨"],
+        ["PANDA", "🐼"],
+        ["CHICKEN", "🐔"],
+        ["CHICK", "🐤"],
+
+        ["SHEEP", "🐑"],
+        ["GOAT", "🐐"],
+        ["RABBIT", "🐇"],
+        ["CAMEL", "🐪"],
+        ["LION", "🦁"],
+        ["TIGER", "🐅"],
+        ["LEOPARD", "🐆"],
+        ["GIRAFFE", "🦒"],
+        ["ELEPHANT", "🐘"],
+        ["HEDGEHOG", "🦔"],
+        ["RHINO", "🦏"],
+        ["HIPPO", "🦛"],
+
+        ["MOOSE", "🫎"],
+        ["ZEBRA", "🦓"],
+        ["COOKIE", "🍪"],
+        ["CAKE", "🎂"],
+        ["T-REX", "🦖"],
+        ["APPLE", "🍎"],
+        ["CHERRY", "🍒"],
+        ["CLOUD", "☁️"],
+
+        ["DIPLODOCUS", "🦕"],
+        ["SNAKE", "🐍"],
+        ["TURTLE", "🐢"],
+        ["LIZARD", "🦎"],
+        ["CATERPILLAR", "🐛"],
+        ["LADYBIRD", "🐞"],
+        ["MOUSE", "🐁"],
+      ];
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="word-container" onclick="previousPage()">
+        <div id="word">DOG</div>
+      </div>
+      <div id="emoji" class="emoji" onclick="nextPage()">🐕</div>
+    </div>
+  </body>
+  <script>
+    const wordDiv = document.getElementById("word");
+    const emojiDiv = document.getElementById("emoji");
+
+    let page = 1;
+    setPage(page);
+
+    function previousPage() {
+      if (page > 1) page--;
+      setPage(page);
+    }
+
+    function nextPage() {
+      if (page < pages.length) page++;
+      setPage(page);
+    }
+
+    function setPage(page) {
+      const i = page - 1;
+      const word = pages[i][0];
+      const emoji = pages[i][1];
+      wordDiv.innerText = word;
+      wordDiv.className = "word" + word.length;
+      emojiDiv.innerText = emoji;
+    }
+  </script>
+</html>
